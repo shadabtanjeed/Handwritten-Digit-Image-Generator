@@ -133,16 +133,7 @@ def generate_images(model, digit, num_samples=5):
 def main():
     st.title("MNIST Handwritten Digit Generator")
     st.write(
-        "PIck the desired digit and number of samples in the sidebar to generate new handwritten digit images."
-    )
-
-    # Sidebar controls
-    st.sidebar.header("Generation Controls")
-    digit = st.sidebar.selectbox(
-        "Select digit to generate:", options=list(range(10)), index=5
-    )
-    num_samples = st.sidebar.slider(
-        "Number of samples:", min_value=1, max_value=10, value=5
+        "Pick the desired digit and number of samples to generate new handwritten digit images."
     )
 
     # Load model
@@ -152,7 +143,22 @@ def main():
     if model is None:
         st.stop()
 
-    st.success("Model loaded successfully!")
+    # st.success("Model loaded successfully!")
+
+    # Main window controls
+    st.header("Generation Controls")
+
+    col1, col2 = st.columns(2)
+
+    with col1:
+        digit = st.selectbox(
+            "Select digit to generate:", options=list(range(10)), index=5
+        )
+
+    with col2:
+        num_samples = st.slider(
+            "Number of samples:", min_value=1, max_value=10, value=5
+        )
 
     # Generate button
     if st.button("🎲 Generate New Images", type="primary"):
