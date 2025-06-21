@@ -131,9 +131,9 @@ def generate_images(model, digit, num_samples=5):
 
 
 def main():
-    st.title("🎨 MNIST Handwritten Digit Generator")
+    st.title("MNIST Handwritten Digit Generator")
     st.write(
-        "Generate handwritten digits using a Conditional Variational Autoencoder (CVAE)"
+        "PIck the desired digit and number of samples in the sidebar to generate new handwritten digit images."
     )
 
     # Sidebar controls
@@ -178,25 +178,6 @@ def main():
                     st.image(img, caption=f"Sample {i+1}", width=120)
         else:
             st.error("Failed to generate images")
-
-    # Information section
-    with st.expander("ℹ️ About this Model"):
-        st.write(
-            """
-        This application uses a **Conditional Variational Autoencoder (CVAE)** trained on the MNIST dataset.
-        
-        **How it works:**
-        - The model learns to encode handwritten digits into a latent space
-        - It can then generate new digits by sampling from this latent space
-        - The "conditional" part means we can specify which digit we want to generate
-        
-        **Model Architecture:**
-        - Latent dimension: 128
-        - Encoder: 3 convolutional layers with BatchNorm and Dropout
-        - Decoder: 4 transposed convolutional layers
-        - Training: 50 epochs on MNIST dataset
-        """
-        )
 
 
 if __name__ == "__main__":
